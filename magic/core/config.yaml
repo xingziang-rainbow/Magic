@@ -1,0 +1,22 @@
+# Magic Agent 全局配置
+# 所有可调参数集中在这里，改配置只改这个文件
+
+# ============ 模型配置 ============
+model:
+  name: "qwen2.5vl:7b-q4_K_M"   # Ollama 模型名
+  keep_alive: "30m"              # 模型保持加载时长
+  temperature: 0.2               # 温度（0=精确，1=发散）
+  max_tokens: 1024               # 单次最大输出 token
+
+# ============ 记忆配置 ============
+memory:
+  db_path: "~/.local/share/rainbow/memory.db"   # SQLite 数据库路径
+  max_short_term: 10             # 短期记忆保留轮数
+  long_term_count: 5             # 长期记忆检索条数
+
+# ============ 屏幕操作配置 ============
+vision:
+  max_steps: 5                   # 屏幕操作最大步数
+  step_delay: 0.5                # 每步间隔（秒）
+  screenshot_scale: 0.4          # 截图缩放比例
+  screenshot_quality: 75         # JPEG 质量
