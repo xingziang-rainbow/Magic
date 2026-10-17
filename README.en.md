@@ -127,6 +127,8 @@ Roadmap
 ☐ Desktop UI (Tauri)
 ☐ More extensible tools
 
+Author：XingZiang
+
 License
 
 MIT
