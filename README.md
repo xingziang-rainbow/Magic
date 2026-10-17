@@ -130,6 +130,8 @@ exit 退出程序
 ☐ UI 桌面图形界面（基于 Tauri）
 ☐ 更多丰富的扩展工具
 
+制作者：XingZiang
+
 许可证
 
 MIT
