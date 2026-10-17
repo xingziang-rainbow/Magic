@@ -1,39 +1,130 @@
-# AI Linux
+# Rainbow One
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+基于 Linux 内核的个人操作系统项目，AI 深度集成。
 
-#### 软件架构
-软件架构说明
+## 项目定位
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+- 只兼容 Windows 应用（不兼容 macOS）
+- 核心兼容层：NTSync + Wine/Proton
+- 包管理：Flatpak 为主，双击安装
+- 系统设计：不可变系统（核心只读、原子更新、失败回滚）
+- 完全离线运行，不依赖任何服务器
+- 零资金投入，非商业项目
 
 
-#### 特技
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## Magic 是什么
+
+Magic 的 AI 助手，能：
+- 聊天、回答问题
+- 打开应用、调音量、截图、锁屏
+- 创建/读取/写入/搜索/删除文件
+- 执行系统命令（危险命令需确认）
+- 联网搜索
+
+核心架构：**AI 自己判断要不要调用工具，脚本只负责给工具定义、执行工具、把结果返回 AI。**
+
+## 当前进度
+
+- ✅ Magic 核心架构（AI 判断 + 工具调用）
+- ✅ 系统操作模块
+- ✅ 文件操作模块
+- ✅ 记忆模块（短期 + 长期）
+- ✅ 模型后端（自动启动 Ollama）
+- ⏳ UI（Tauri，未开始）
+- ⏳ 兼容层（NTSync + Wine/Proton，未开始）
+
+## 目录结构
+
+```
+rainbow/
+├── magic/                    # AI Agent（Python）
+│   ├── core/                 # 主循环、配置
+│   │   ├── config.yaml
+│   │   ├── config_loader.py
+│   │   └── loop.py
+│   ├── 模块/                 # 工具模块
+│   │   ├── 内部/             # 系统、文件等内置
+│   │   └── 扩展/             # 可添加的模块
+│   ├── memory/               # 记忆
+│   └── backends/             # 模型后端
+├── ui/                       # Tauri 界面（待开发）
+├── apps/                     # 自研应用（待开发）
+├── assets/                   # 图标、壁纸
+├── docs/                     # 文档
+└── scripts/                  # 构建脚本
+```
+
+## 环境要求
+
+- Debian 13（或其他 Linux 发行版）
+- Python 3.13+
+- Ollama
+- 模型：`qwen2.5vl:7b-q4_K_M`（或兼容的其他模型）
+
+## 安装
+
+### 1. 安装 Ollama 和模型
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull qwen2.5vl:7b-q4_K_M
+```
+
+### 2. 装系统依赖
+
+```bash
+sudo apt install xclip xdotool wmctrl xbacklight gnome-screenshot -y
+```
+
+### 3. 创建 Python 虚拟环境
+
+```bash
+python3 -m venv ~/ai_env
+source ~/ai_env/bin/activate
+pip install pyyaml requests
+```
+
+## 使用
+
+```bash
+cd ~/rainbow/magic/core
+python3 loop.py
+```
+
+### 支持的操作示例
+
+| 输入 | 效果 |
+| --- | --- |
+| `你好` | 普通对话 |
+| `现在几点` | 返回时间 |
+| `帮我打开 Firefox` | 打开浏览器 |
+| `音量调到 50%` | 调音量 |
+| `截图` | 截图保存 |
+| `创建文件 note.txt 内容 你好世界` | 创建文件 |
+| `读一下 note.txt` | 读取文件内容 |
+| `搜索 Python 教程` | 浏览器搜索 |
+| `介绍一下你自己` | 普通对话 |
+| `exit` | 退出 |
+
+## 架构设计
+
+```
+用户输入
+  ↓
+脚本把 [工具定义 + 用户输入] 发给 AI
+  ↓
+AI 自己判断：
+  ├─ 普通对话 → 直接回答
+  └─ 需要操作 → 输出 JSON 工具调用
+  ↓
+脚本执行工具 → 结果返回 AI
+  ↓
+AI 组织最终回复 → 返回给用户
+```
+
+**关键点：脚本不猜用户想干什么，AI 自己判断。**
+
+## 许可证
+
+MIT
