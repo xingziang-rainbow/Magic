@@ -1,4 +1,5 @@
-Magic - Local AI Desktop Agent
+### Magic - Local AI Desktop Agent V0.1
+
 
 A fully offline, deeply controllable local AI Agent for your computer. Supports file management, system operations, and tool calling with absolute privacy. No internet required.
 
@@ -42,34 +43,43 @@ After success, the script returns the result to the model, which then replies to
 
 Directory Structure
 
-magic/: Project root
-core/: Core application directory
-config.yaml: Global configuration (model name, context size, memory limits)
-config_loader.py: Config loader
-loop.py: Main loop entry, handles model communication and tool dispatch
-模块/ (Modules)/: Tool modules directory
-内部/ (Internal)/: Built-in core tools
-system.py: System-level operations
-file.py: File system operations
-registry.py: Tool registry, informs AI of available tools
-扩展/ (External)/: For future AI-generated custom modules
-memory/: Memory system
-short_term.py: Short-term memory (recent context)
-long_term.py: Long-term memory (SQLite for user preferences)
-backends/: LLM backend adapters
-ollama_backend.py: Ollama API wrapper
 
-Quick Start
+- magic/: Project root
+- core/: Core application directory
+- config.yaml: Global configuration (model name, context size, memory limits)
+- config_loader.py: Config loader
+- loop.py: Main loop entry, handles model communication and tool dispatch
+- 模块/ (Modules)/: Tool modules directory
+- 内部/ (Internal)/: Built-in core tools- 这里是列表文本
+- system.py: System-level operations
+- file.py: File system operations
+- registry.py: Tool registry, informs AI of available tools
+- 扩展/ (External)/: For future AI-generated custom modules
+- memory/: Memory system
+- short_term.py: Short-term memory (recent context)
+- long_term.py: Long-term memory (SQLite for user preferences)
+- backends/: LLM backend adapters
+- ollama_backend.py: Ollama API wrapper
 
-Requirements: Linux (Debian/Ubuntu recommended), Python 3.10+, Ollama installed with model downloaded (e.g., qwen2.5vl:7b-q4_K_M).
 
-Installation:
 
-Install system dependencies: sudo apt install xclip xdotool wmctrl xbacklight gnome-screenshot -y
 
-Setup virtual environment: python3 -m venv ai_env, then source ai_env/bin/activate
 
-Install Python packages: pip install pyyaml requests
+
+
+1. - Quick Start
+1. - 
+1. - Requirements: Linux (Debian/Ubuntu recommended), Python 3.10+, Ollama installed with model downloaded (e.g., qwen2.5vl:7b-q4_K_M).
+1. - 
+1. - Installation:
+1. - 
+1. - Install system dependencies:` sudo apt install xclip xdotool wmctrl xbacklight gnome-screenshot -y`
+1. - 
+1. - Setup virtual environment: `python3 -m venv ai_env, then source ai_env/bin/activate`
+1. - 
+1. - Install Python packages: `pip install pyyaml requests`
+
+
 
 Run:
 cd magic/core
@@ -77,12 +87,14 @@ python3 loop.py
 
 Usage Examples
 
-Normal Chat: "Hello, who are you?" -> Answers directly.
-Time Query: "What time is it?" -> Calls get_time tool.
-App Control: "Open Firefox" -> Calls open_app tool.
-System Control: "Set volume to 30%" -> Calls volume tool.
-File Operations: "Create file note.txt content Hello World" -> Calls create_file tool.
-Command Execution: "Run ls -la" -> Calls run_command tool.
+
+- Normal Chat: "Hello, who are you?" -> Answers directly.
+- Time Query: "What time is it?" -> Calls get_time tool.
+- App Control: "Open Firefox" -> Calls open_app tool.
+- System Control: "Set volume to 30%" -> Calls volume tool.
+- File Operations: "Create file note.txt content Hello World" -> Calls create_file tool.
+- Command Execution: "Run ls -la" -> Calls run_command tool.
+
 
 License
 
