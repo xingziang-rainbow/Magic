@@ -1,7 +1,10 @@
 
 
-中文版 README.md
-Magic - 本地 AI 桌面智能体
+
+ **
+
+### Magic - 本地 AI 桌面智能体 V0.1
+** 
 
 一个完全离线运行、可深度操控你电脑的 AI 智能体（Agent）。支持文件管理、系统操作与工具调用，保护隐私，无需联网。
 
@@ -45,44 +48,50 @@ Magic 的核心设计理念是：脚本不猜用户想干什么，判断权完�
 
 目录结构说明
 
-magic/：项目根目录
-core/：核心主程序目录
-config.yaml：全局配置文件（包含模型名称、上下文长度、记忆数量等）
-config_loader.py：负责读取和解析配置的加载器
-loop.py：核心主循环入口，负责与模型通信和调度工具
-模块/：存放所有工具模块的目录
-内部/：系统内置的核心工具
-system.py：负责系统级别的操作（应用、音量、截图等）
-file.py：负责文件系统的增删改查
-registry.py：工具注册表，告诉 AI 有哪些工具可用，并负责解析执行
-扩展/：预留给未来 AI 自己编写或用户自定义的扩展工具
-memory/：记忆系统目录
-short_term.py：短期记忆管理（保留最近的对话上下文）
-long_term.py：长期记忆管理（基于 SQLite，记住用户偏好）
-backends/：大模型后端适配层
-ollama_backend.py：Ollama 接口封装，负责启动服务和发送请求
+
+- magic/：项目根目录
+- core/：核心主程序目录
+- config.yaml：全局配置文件（包含模型名称、上下文长度、记忆数量等）
+- config_loader.py：负责读取和解析配置的加载器
+- loop.py：核心主循环入口，负责与模型通信和调度工具
+- 模块/：存放所有工具模块的目录
+- 内部/：系统内置的核心工具
+- system.py：负责系统级别的操作（应用、音量、截图等）
+- file.py：负责文件系统的增删改查
+- registry.py：工具注册表，告诉 AI 有哪些工具可用，并负责解析执行
+- 扩展/：预留给未来 AI 自己编写或用户自定义的扩展工具
+- memory/：记忆系统目录
+- short_term.py：短期记忆管理（保留最近的对话上下文）
+- long_term.py：长期记忆管理（基于 SQLite，记住用户偏好）
+- backends/：大模型后端适配层
+- ollama_backend.py：Ollama 接口封装，负责启动服务和发送请求
+
 
 快速开始
 
 环境要求：Linux 操作系统（推荐 Debian 或 Ubuntu），Python 3.10 及以上版本，已安装 Ollama 并下载了模型（推荐 qwen2.5vl:7b-q4_K_M）。
 
-安装步骤：
-第一步，安装系统底层的辅助工具，在终端运行：sudo apt install xclip xdotool wmctrl xbacklight gnome-screenshot -y
-第二步，创建并激活 Python 虚拟环境：python3 -m venv ai_env 然后执行 source ai_env/bin/activate
-第三步，安装 Python 依赖包：pip install pyyaml requests
+
+1. 安装步骤：
+1. 第一步，安装系统底层的辅助工具，在终端运行：`sudo apt install xclip xdotool wmctrl xbacklight gnome-screenshot -y`
+1. 第二步，创建并激活 Python 虚拟环境：`python3 -m venv ai_env 然后执行 source ai_env/bin/activate`
+1. 第三步，安装 Python 依赖包：`pip install pyyaml requests`
+
 
 运行方式：
-进入核心目录：cd magic/core
-启动 Magic：python3 loop.py
+进入核心目录：`cd magic/core`
+启动 Magic：`python3 loop.py`
 
 对话示例
 
-普通对话：“你好，你是谁？” —— Magic 会直接回答你的问题。
-时间查询：“现在几点了？” —— Magic 会调用 get_time 工具，返回当前精确时间。
-应用控制：“帮我打开 Firefox” —— 调用 open_app 工具，启动浏览器。
-系统控制：“音量调到 30%” —— 调用 volume 工具，调节系统声音。
-文件操作：“创建文件 note.txt 内容 你好世界” —— 调用 create_file 工具，在你的文档目录下生成文件。
-命令执行：“执行 ls -la” —— 调用 run_command 工具，列出当前目录内容。
+
+- 普通对话：“你好，你是谁？” —— Magic 会直接回答你的问题。
+- 时间查询：“现在几点了？” —— Magic 会调用 get_time 工具，返回当前精确时间。
+- 应用控制：“帮我打开 Firefox” —— 调用 open_app 工具，启动浏览器。
+- 系统控制：“音量调到 30%” —— 调用 volume 工具，调节系统声音。
+- 文件操作：“创建文件 note.txt 内容 你好世界” —— 调用 create_file 工具，在你的文档目录下生成文件。
+- 命令执行：“执行 ls -la” —— 调用 run_command 工具，列出当前目录内容。
+
 
 开源协议
 
