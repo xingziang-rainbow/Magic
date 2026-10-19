@@ -14,6 +14,13 @@ memory:
   max_short_term: 10             # 短期记忆保留轮数
   long_term_count: 5             # 长期记忆检索条数
 
+# ============ 联网搜索配置 ============
+search:
+  searxng_url: "http://localhost:8080"   # SearXNG 实例地址（改这里即可，也可用环境变量 SEARXNG_URL）
+  max_results: 3                          # 每次返回条数
+  timeout: 8                              # 搜索请求超时（秒）
+  fetch_timeout: 5                        # 抓网页正文超时（秒）
+
 # ============ 屏幕操作配置 ============
 vision:
   max_steps: 5                   # 屏幕操作最大步数
