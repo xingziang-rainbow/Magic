@@ -1,4 +1,4 @@
-### Magic - Local AI Desktop Agent V0.1
+### Magic - Local AI Desktop Agent V0.2
 
 
 A fully offline, deeply controllable local AI Agent for your computer. Supports file management, system operations, and tool calling with absolute privacy. No internet required.
