@@ -95,6 +95,14 @@ Usage Examples
 - File Operations: "Create file note.txt content Hello World" -> Calls create_file tool.
 - Command Execution: "Run ls -la" -> Calls run_command tool.
 
+## Download & Installation
+
+| Platform | Download Link | Description |
+| :--- | :--- | :--- |
+| **Gitee (Recommended for CN)** | [Download Source Code (.zip)](https://gitee.com/xingziang-rainbow/Magic/repository/archive/master.zip) | Fast access in China |
+| **GitHub** | [Download Source Code (.zip)](https://github.com/xingziang-rainbow/Magic/archive/refs/heads/master.zip) | VPN/Proxy may be required |
+| **Previous Versions** | [Go to Releases Page](https://gitee.com/xingziang-rainbow/Magic/releases) | View all versions |
+
 
 License
 
