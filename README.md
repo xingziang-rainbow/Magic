@@ -97,6 +97,14 @@ python3 loop.py
 | "创建文件 note.txt 内容 你好世界" | 调用 create_file 工具，在你的文档目录下生成文件 |
 | "执行 ls -la" | 调用 run_command 工具，列出当前目录内容 |
 
+## 下载与安装
+
+| 平台 | 下载链接 | 说明 |
+| :--- | :--- | :--- |
+| **Gitee (国内推荐)** | [点击下载源码压缩包](https://gitee.com/xingziang-rainbow/Magic/repository/archive/master.zip) | 国内访问极快 |
+| **GitHub** | [点击下载源码压缩包](https://github.com/xingziang-rainbow/Magic/archive/refs/heads/master.zip) | 需科学上网 |
+| **历史版本** | [前往 Releases 页面](https://gitee.com/xingziang-rainbow/Magic/releases) | 查看所有版本 |
+
 ## 开源协议
 
 本项目采用 MIT License，欢迎自由使用、修改和分发。
